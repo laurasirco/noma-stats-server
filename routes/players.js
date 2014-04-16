@@ -1,20 +1,15 @@
-var mongo = require('mongodb');
+module.exports = function(app){
 
-var mongoUri = process.env.MONGOLAB_URI ||
-  process.env.MONGOHQ_URL ||
-  'mongodb://<dbuser>:<dbpassword>@ds053818.mongolab.com:53818/heroku_app24197088';
+	var Player = require('../models/player.js');
 
-var db = mongo.Db.connect(mongoUri, function (err, db) {
-});
-
-exports.findAll = function(req, res) {
-	db.collection('Players', function(err,collection){
-		collection.find().toArray(function(err, items){
-			res.send(items);
+	findAll = function(req, res) {
+		Player.find(function(err, players){
+			if(!err)
+				res.send(players);
+			else
+				console.log("ERROR: " + err);
 		});
-	});
-};
- 
-exports.findById = function(req, res) {
-    res.send({id:req.params.id, name: "The Name", description: "description"});
-};
+	};
+	 
+
+}

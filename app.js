@@ -3,7 +3,7 @@ var logfmt = require("logfmt");
 var players = require('./routes/players');
 var mongoose = require('mongoose');
 var app = express();
-
+var routes = require('./routes/players')(app);
 
 app.use(logfmt.requestLogger());
 
@@ -18,17 +18,21 @@ app.get('/', function(req, res) {
   res.send('Hello World!');
 });
 
-app.get('/players', players.findAll);
+app.get('/players', findAll);
 //app.get('/stats/:id', stats.findById);
 //app.post('/stats', stats.addStat);
 //app.put('/stats/:id', stats.updateStat);
 //app.delete('/stats/:id', stats.deleteStat);
 
-mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds053818.mongolab.com:53818/heroku_app24197088', function(err, res) {
-  if(err) {
-    console.log('ERROR: connecting to Database. ' + err);
+var uriString = process.env.MONGOLAB_URI;
+
+var theport = process.env.PORT || 5000;
+
+mongoose.connect(uristring, function (err, res) {
+  if (err) { 
+    console.log ('ERROR connecting to: ' + uristring + '. ' + err);
   } else {
-    console.log('Connected to Database');
+    console.log ('Succeeded connected to: ' + uristring);
   }
 });
 
