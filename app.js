@@ -1,6 +1,6 @@
 var express = require("express");
 var logfmt = require("logfmt");
-var stats = require('./routes/stats');
+//var stats = require('./routes/stats');
 var mongoose = require('mongoose');
 var app = express();
 
