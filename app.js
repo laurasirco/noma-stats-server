@@ -1,6 +1,6 @@
 var express = require("express");
 var logfmt = require("logfmt");
-//var stats = require('./routes/stats');
+var players = require('./routes/players');
 var mongoose = require('mongoose');
 var app = express();
 
@@ -18,8 +18,8 @@ app.get('/', function(req, res) {
   res.send('Hello World!');
 });
 
-app.get('/stats', stats.findAll);
-app.get('/stats/:id', stats.findById);
+app.get('/players', players.findAll);
+//app.get('/stats/:id', stats.findById);
 //app.post('/stats', stats.addStat);
 //app.put('/stats/:id', stats.updateStat);
 //app.delete('/stats/:id', stats.deleteStat);
