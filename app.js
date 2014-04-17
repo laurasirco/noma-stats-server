@@ -24,7 +24,7 @@ app.get('/players', findAll);
 //app.put('/stats/:id', stats.updateStat);
 //app.delete('/stats/:id', stats.deleteStat);
 
-var uriString = process.env.MONGOLAB_URI;
+var uristring = process.env.MONGOLAB_URI;
 
 var theport = process.env.PORT || 5000;
 
