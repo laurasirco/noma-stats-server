@@ -11,21 +11,22 @@ app.configure(function(){
 	app.use(express.logger('dev'));
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
-  	app.use(app.router);
+  app.use(app.router);
+  app.use(express.static(__dirname + '/public'));
 });
 
-app.get('/', function(req, res) {
-  res.send('Hello World!');
+app.get('/', function(req, res) {           
+    res.sendfile('./public/index.html');        
 });
 
-app.get('/players', findAll);
-app.get('/players/:username', findByUsername);
-app.post('/player', addPlayer);
-app.put('/updateTime/:username', updatePlayedTime);
-app.put('/updateEnvironment/:username', updateEnvironment);
-app.put('/updateLastUnlockedAct/:username', updateLastUnlockedAct);
-app.put('/updatePersonality/:username', updatePersonality);
-app.put('/updateAffinityOfNPC/:username', updateAffinityOfNPC);
+app.get('/api/players', findAll);
+app.get('/api/players/:username', findByUsername);
+app.post('/api/player', addPlayer);
+app.put('/api/updateTime/:username', updatePlayedTime);
+app.put('/api/updateEnvironment/:username', updateEnvironment);
+app.put('/api/updateLastUnlockedAct/:username', updateLastUnlockedAct);
+app.put('/api/updatePersonality/:username', updatePersonality);
+app.put('/api/updateAffinityOfNPC/:username', updateAffinityOfNPC);
 
 var uristring = process.env.MONGOLAB_URI ||
     'mongodb://localhost/players';
