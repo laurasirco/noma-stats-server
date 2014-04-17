@@ -3,19 +3,19 @@ var mongoose = require('mongoose'),
 
 var playerSchema = new Schema({
 	
-	username: String,
-	password: String,
-	timePlayed: Number,
-	environment: [Number],
-	lastUnlockedAct: Number,
+	username: { type: String },
+	password: { type: String },
+	timePlayed: {type: Number },
+	environment: { type: Array },
+	lastUnlockedAct: { type: Number },
 	personality: { 
-		activity: Number,
-		conversation: Number,
-		temperament: Number,
-		confidence: Number
+		activity: { type: Number },
+		conversation: { type: Number },
+		temperament: { type: Number },
+		confidence: { type: Number }
 	},
-	affinityWithNPC1: [Number],
-	affinityWithNPC2: [Number]
+	affinityWithNPC1: { type: Array },
+	affinityWithNPC2: { type: Array }
 
 });
 

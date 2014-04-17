@@ -19,12 +19,13 @@ app.get('/', function(req, res) {
 });
 
 app.get('/players', findAll);
-//app.get('/stats/:id', stats.findById);
-//app.post('/stats', stats.addStat);
+app.get('/players/:id', findById);
+app.post('/player', addPlayer);
 //app.put('/stats/:id', stats.updateStat);
 //app.delete('/stats/:id', stats.deleteStat);
 
-var uristring = process.env.MONGOLAB_URI;
+var uristring = process.env.MONGOLAB_URI ||
+    'mongodb://localhost/players';
 
 var theport = process.env.PORT || 5000;
 
