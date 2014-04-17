@@ -1,10 +1,11 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
+	uniqueValidator = require('mongoose-unique-validator');
 
 var playerSchema = new Schema({
 	
-	username: { type: String, required: true },
-	password: { type: String },
+	username: { type: String, required: true, unique: true },
+	password: { type: String, required: true },
 	timePlayed: {type: Number },
 	environment: { type: Array },
 	lastUnlockedAct: { type: Number },
@@ -18,5 +19,7 @@ var playerSchema = new Schema({
 	affinityWithNPC2: { type: Array }
 
 });
+
+playerSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model('Player', playerSchema);

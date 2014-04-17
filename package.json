@@ -8,7 +8,8 @@
   "dependencies": {
   	"express": "3.x",
   	"logfmt": "1.x",
-    "mongoose": "3.x"
+    "mongoose": "3.x",
+    "mongoose-unique-validator": "0.x"
   },
   
   "main": "app.js",
