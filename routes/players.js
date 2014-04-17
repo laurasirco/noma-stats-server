@@ -24,6 +24,7 @@ module.exports = function(app){
 		console.log('POST');
 		console.log(req.body);
 
+
 		var player = new Player({
 			username: req.body.username,
 			password: req.body.password,
@@ -42,7 +43,9 @@ module.exports = function(app){
 				console.log('ERROR: ' +err);
 		});
 
+
 		res.send(player);
+		
 	}
 	 
 
