@@ -19,10 +19,13 @@ app.get('/', function(req, res) {
 });
 
 app.get('/players', findAll);
-app.get('/players/:id', findById);
+app.get('/players/:username', findByUsername);
 app.post('/player', addPlayer);
-//app.put('/stats/:id', stats.updateStat);
-//app.delete('/stats/:id', stats.deleteStat);
+app.put('/updateTime/:username', updatePlayedTime);
+app.put('/updateEnvironment/:username', updateEnvironment);
+app.put('/updateLastUnlockedAct/:username', updateLastUnlockedAct);
+app.put('/updatePersonality/:username', updatePersonality);
+app.put('/updateAffinityOfNPC/:username', updateAffinityOfNPC);
 
 var uristring = process.env.MONGOLAB_URI ||
     'mongodb://localhost/players';

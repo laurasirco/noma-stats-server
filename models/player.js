@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 
 var playerSchema = new Schema({
 	
-	username: { type: String },
+	username: { type: String, required: true },
 	password: { type: String },
 	timePlayed: {type: Number },
 	environment: { type: Array },
