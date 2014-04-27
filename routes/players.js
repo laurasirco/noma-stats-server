@@ -37,8 +37,11 @@ module.exports = function(app){
 
 	//Anadir nuevo usuario
 	addPlayer = function(req, res){
+		
 		console.log('POST');
 		console.log(req.body);
+
+		var response = "";
 
 
 		var player = new Player({
@@ -54,13 +57,13 @@ module.exports = function(app){
 
 		player.save(function(err){
 			if(!err)
-				console.log('created');
+				response = "error: " + err;
 			else
-				console.log('ERROR: ' +err);
+				response = "success";
 		});
 
 
-		res.send(player);
+		res.send(response);
 		
 	}
 
@@ -69,7 +72,7 @@ module.exports = function(app){
 
 		console.log('UPDATE');
 
-		Player.findOne({username: new RegExp('^'+req.param("username")+'$', 'i')}, function(err, player){
+		Player.findOne({username: new RegExp('^'+req.param("username")+'$', 'i'), password: new RegExp('^'+req.param("password")+'$', 'i')}, function(err, player){
 		    
 		    player.timePlayed = player.timePlayed + req.body.timePlayed;
 
@@ -91,7 +94,7 @@ module.exports = function(app){
 
 		console.log('UPDATE');
 
-		Player.findOne({username: new RegExp('^'+req.param("username")+'$', 'i')}, function(err, player){
+		Player.findOne({username: new RegExp('^'+req.param("username")+'$', 'i'), password: new RegExp('^'+req.param("password")+'$', 'i')}, function(err, player){
 		    
 		    player.environment.push(req.body.environment);
 
@@ -113,7 +116,7 @@ module.exports = function(app){
 
 		console.log('UPDATE');
 
-		Player.findOne({username: new RegExp('^'+req.param("username")+'$', 'i')}, function(err, player){
+		Player.findOne({username: new RegExp('^'+req.param("username")+'$', 'i'), password: new RegExp('^'+req.param("password")+'$', 'i')}, function(err, player){
 		    
 		    player.lastUnlockedAct = req.body.lastUnlockedAct;
 
@@ -135,7 +138,7 @@ module.exports = function(app){
 
 		console.log('UPDATE');
 
-		Player.findOne({username: new RegExp('^'+req.param("username")+'$', 'i')}, function(err, player){
+		Player.findOne({username: new RegExp('^'+req.param("username")+'$', 'i'), password: new RegExp('^'+req.param("password")+'$', 'i')}, function(err, player){
 		    
 		    player.personality = req.body.personality;
 
@@ -157,7 +160,7 @@ module.exports = function(app){
 
 		console.log('UPDATE');
 
-		Player.findOne({username: new RegExp('^'+req.param("username")+'$', 'i')}, function(err, player){
+		Player.findOne({username: new RegExp('^'+req.param("username")+'$', 'i'), password: new RegExp('^'+req.param("password")+'$', 'i')}, function(err, player){
 		    
 		    if(req.body.world == 1){
 		    	player.affinityWithNPC1.set(req.body.NPC, req.body.value);
