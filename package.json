@@ -9,7 +9,8 @@
   	"express": "3.x",
   	"logfmt": "1.x",
     "mongoose": "3.x",
-    "mongoose-unique-validator": "0.x"
+    "mongoose-unique-validator": "0.x",
+    "mongoose-auto-increment": "3.x"
   },
   
   "main": "app.js",

@@ -40,30 +40,40 @@ module.exports = function(app){
 		
 		console.log('POST');
 		//console.log(req.body);
+		var counter = -1;
 
+		Player.find().sort({_id: -1}).limit(1).find(function(err, doc) {
+			if(!err){
+				console.log("doc " + doc[0].username);
+				counter = doc[0].username;
 
-		var player = new Player({
-			username: req.body.username,
-			password: req.body.password,
-			timePlayed: req.body.timePlayed,
-			environment: req.body.environment,
-			lastUnlockedAct: req.body.lastUnlockedAct,
-			personality: req.body.personality,
-			affinityWithNPC1: req.body.affinityWithNPC1,
-			affinityWithNPC2: req.body.affinityWithNPC2
-		});
+				var player = new Player({
+					username: counter + 1,
+					password: req.body.password,
+					timePlayed: req.body.timePlayed,
+					environment: req.body.environment,
+					lastUnlockedAct: req.body.lastUnlockedAct,
+					personality: req.body.personality,
+					affinityWithNPC1: req.body.affinityWithNPC1,
+					affinityWithNPC2: req.body.affinityWithNPC2,
+					createdAt: new Date()
+				});
 
-		player.save(function(err){
-			if(err){
-				response = err;
-				console.log(response);
-				res.send(response);
+				player.save(function(err){
+					if(err){
+						response = err;
+						console.log(response);
+						res.send(response);
+					}
+					else{
+						response = '{ "username": ' +player.username+ '}';
+						console.log(response);
+						res.send(response);
+					}
+				});
 			}
-			else{
-				response = true;
-				console.log(response);
-				res.send(response);
-			}
+			else
+				console.log("error: " + err);
 		});
 		
 	}
