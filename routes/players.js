@@ -45,7 +45,7 @@ module.exports = function(app){
 		Player.find().sort({_id: -1}).limit(1).find(function(err, doc) {
 			if(!err){
 				
-				if(typeof doc !== "undefined") {
+				if(typeof doc[0] !== "undefined") {
 					console.log("doc " + doc[0].username);
 					counter = doc[0].username;
 				}
