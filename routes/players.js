@@ -44,8 +44,11 @@ module.exports = function(app){
 
 		Player.find().sort({_id: -1}).limit(1).find(function(err, doc) {
 			if(!err){
-				console.log("doc " + doc[0].username);
-				counter = doc[0].username;
+				
+				if(doc){
+					console.log("doc " + doc[0].username);
+					counter = doc[0].username;
+				}
 
 				var player = new Player({
 					username: counter + 1,
