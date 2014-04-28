@@ -39,9 +39,7 @@ module.exports = function(app){
 	addPlayer = function(req, res){
 		
 		console.log('POST');
-		console.log(req.body);
-
-		var response = "";
+		//console.log(req.body);
 
 
 		var player = new Player({
@@ -56,14 +54,17 @@ module.exports = function(app){
 		});
 
 		player.save(function(err){
-			if(!err)
-				response = "error: " + err;
-			else
-				response = "success";
+			if(err){
+				response = err;
+				console.log(response);
+				res.send(response);
+			}
+			else{
+				response = true;
+				console.log(response);
+				res.send(response);
+			}
 		});
-
-
-		res.send(response);
 		
 	}
 
@@ -77,10 +78,14 @@ module.exports = function(app){
 		    player.timePlayed = player.timePlayed + req.body.timePlayed;
 
 		    player.save(function(err) {
-		      if(!err) {
-		  		console.log('Updated');
+		      if(err) {
+		  		response = err;
+				console.log(response);
+				res.send(response);
 		      } else {
-		  		console.log('ERROR: ' + err);
+		  		response = true;
+				console.log(response);
+				res.send(response);
 		      }
 
       		res.send(player);
@@ -99,10 +104,14 @@ module.exports = function(app){
 		    player.environment.push(req.body.environment);
 
 		    player.save(function(err) {
-		      if(!err) {
-		  		console.log('Updated');
+		      if(err) {
+		  		response = err;
+				console.log(response);
+				res.send(response);
 		      } else {
-		  		console.log('ERROR: ' + err);
+		  		response = true;
+				console.log(response);
+				res.send(response);
 		      }
 
       		res.send(player);
@@ -121,10 +130,14 @@ module.exports = function(app){
 		    player.lastUnlockedAct = req.body.lastUnlockedAct;
 
 		    player.save(function(err) {
-		      if(!err) {
-		  		console.log('Updated');
+		      if(err) {
+		  		response = err;
+				console.log(response);
+				res.send(response);
 		      } else {
-		  		console.log('ERROR: ' + err);
+		  		response = true;
+				console.log(response);
+				res.send(response);
 		      }
 
       		res.send(player);
@@ -143,10 +156,14 @@ module.exports = function(app){
 		    player.personality = req.body.personality;
 
 		    player.save(function(err) {
-		      if(!err) {
-		  		console.log('Updated');
+		      if(err) {
+		  		response = err;
+				console.log(response);
+				res.send(response);
 		      } else {
-		  		console.log('ERROR: ' + err);
+		  		response = true;
+				console.log(response);
+				res.send(response);
 		      }
 
       		res.send(player);
@@ -170,10 +187,14 @@ module.exports = function(app){
 		    }
 
 		    player.save(function(err) {
-		      if(!err) {
-		  		console.log('Updated');
+		      if(err) {
+		  		response = err;
+				console.log(response);
+				res.send(response);
 		      } else {
-		  		console.log('ERROR: ' + err);
+		  		response = true;
+				console.log(response);
+				res.send(response);
 		      }
 
       		res.send(player);

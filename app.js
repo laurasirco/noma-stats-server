@@ -19,9 +19,9 @@ app.get('/', function(req, res) {
     res.sendfile('./public/index.html');        
 });
 
-app.get('/api/players', findAll);
-app.get('/api/players/:username', findByUsername);
-app.post('/api/player', addPlayer);
+app.get('/api/games', findAll);
+app.get('/api/games/:username', findByUsername);
+app.post('/api/game', addPlayer);
 app.put('/api/updateTime/:username', updatePlayedTime);
 app.put('/api/updateEnvironment/:username', updateEnvironment);
 app.put('/api/updateLastUnlockedAct/:username', updateLastUnlockedAct);
@@ -29,7 +29,7 @@ app.put('/api/updatePersonality/:username', updatePersonality);
 app.put('/api/updateAffinityOfNPC/:username', updateAffinityOfNPC);
 
 var uristring = process.env.MONGOLAB_URI ||
-    'mongodb://localhost/players';
+    'mongodb://localhost/games';
 
 var theport = process.env.PORT || 5000;
 
