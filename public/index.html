@@ -8,27 +8,35 @@
 
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
-
+		<link href="css/one-page-wonder.css" rel="stylesheet">
 		<base href="/">
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.3/angular-route.js"></script>
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 		<script src="main.js"></script>
 	</head>
 
 	<body ng-controller="MainController">
 
 		<header>
-				<nav class="navbar navbar-default">
+				<nav class="navbar navbar-default navbar-fixed-top">
 				<div class="container">
 					<div class="navbar-header">
 						<a class="navbar-brand" href="/">NOMA</a>
 					</div>
 
+						<form class="navbar-form navbar-right" role="search">
+				        <div class="form-group">
+				          <input type="text" name="partida" class="form-control" placeholder="ID de la partida">
+				        </div>
+				        <button type="submit" class="btn btn-default">Buscar</button>
+				      </form>
+
+
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#game/10"><i class="fa fa-shield"></i> Game 10</a></li>
-						<li><a href="#games"><i class="fa fa-list-alt"></i> Games</a></li>
+						<li><a href="games"><i class="fa fa-list-alt"></i> Partidas</a></li>
 					</ul>
 				</div>
 				</nav>

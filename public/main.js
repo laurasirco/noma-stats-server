@@ -1,6 +1,6 @@
 var nomaApp = angular.module('nomaApp', []);
 
-nomaApp.config(function($routeProvider) {
+nomaApp.config(function($routeProvider, $locationProvider) {
         $routeProvider
 
             // route for the home page
@@ -21,7 +21,9 @@ nomaApp.config(function($routeProvider) {
                 controller  : 'GameController'
             });
 
-            //$locationProvider.html5Mode(true);
+            if(window.history && window.history.pushState){
+                  $locationProvider.html5Mode(true);
+            } 
     });
 
 nomaApp.controller('MainController', function($scope){
