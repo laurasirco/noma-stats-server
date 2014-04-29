@@ -26,7 +26,7 @@ module.exports = function(app){
 		
 		console.log('finding: ' +req.param("username"));
 
-		Player.findOne({username: new RegExp('^'+req.param("username")+'$', 'i')}, function(err, player){
+		Player.findOne({username: req.param("username")}, function(err, player){
 			if(!err)
 				res.send(player);
 			else

@@ -1,27 +1,42 @@
 <!doctype html>
-<html lang="en" ng-app="angularNoma">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Noma - Lista de partidas</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-</head>
-<body ng-controller="mainController">
-	<div class="container">
-		<!--Cabecera-->
-		<div class="jumbotron text-center">
-			<h1>Lista de partidas</h1>
-		</div>
-		<div class="list-group" ng-repeat="player in players">
-		  <a href="" class="list-group-item">
-		    <h4 class="list-group-item-heading">{{ player.username }}</h4>
-		    <p class="list-group-item-text">Tiempo jugado: {{ player.timePlayed }} segundos.</p>
-		    <p class="list-group-item-text">Último acto completado: {{ player.lastUnlockedAct }}</p>
-		  </a>
-		</div>
+<html ng-app="nomaApp">
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-	<script src="main.js"></script>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>NOMA</title>
+
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+
+		<base href="/">
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.3/angular-route.js"></script>
+		<script src="main.js"></script>
+	</head>
+
+	<body ng-controller="MainController">
+
+		<header>
+				<nav class="navbar navbar-default">
+				<div class="container">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="/">NOMA</a>
+					</div>
+
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#game/10"><i class="fa fa-shield"></i> Game 10</a></li>
+						<li><a href="#games"><i class="fa fa-list-alt"></i> Games</a></li>
+					</ul>
+				</div>
+				</nav>
+			</header>
+		
+		<div id="main">
+			<div ng-view=""></div>
+		</div>
+	</body>
+
 </html>

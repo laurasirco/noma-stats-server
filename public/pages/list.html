@@ -1,0 +1,14 @@
+	<div class="jumbotron text-center">
+		<h1>Partidas</h1>
+		<p>{{ message }}</p>
+	</div>
+
+	<div id="game-list" class="row">
+		<div class="col-sm-4 col-sm-offset-4">
+			<div ng-repeat="game in games">
+				<a href="#game/{{game.username}}">
+					{{game.username}}
+				</a>
+			</div>
+		</div>
+	</div>

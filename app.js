@@ -20,7 +20,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/api/games', findAll);
-app.get('/api/games/:username', findByUsername);
+app.get('/api/game/:username', findByUsername);
 app.post('/api/game', addPlayer);
 app.put('/api/updateTime/:username', updatePlayedTime);
 app.put('/api/updateEnvironment/:username', updateEnvironment);
