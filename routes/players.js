@@ -86,7 +86,7 @@ module.exports = function(app){
 
 		console.log('UPDATE');
 
-		Player.findOne({username: new RegExp('^'+req.param("username")+'$', 'i'), password: new RegExp('^'+req.param("password")+'$', 'i')}, function(err, player){
+		Player.findOne({username: req.param("username"), password: new RegExp('^'+req.param("password")+'$', 'i')}, function(err, player){
 		    
 		    player.timePlayed = player.timePlayed + req.body.timePlayed;
 
@@ -112,7 +112,7 @@ module.exports = function(app){
 
 		console.log('UPDATE');
 
-		Player.findOne({username: new RegExp('^'+req.param("username")+'$', 'i'), password: new RegExp('^'+req.param("password")+'$', 'i')}, function(err, player){
+		Player.findOne({username: req.param("username"), password: new RegExp('^'+req.param("password")+'$', 'i')}, function(err, player){
 		    
 		    player.environment.push(req.body.environment);
 
@@ -138,7 +138,7 @@ module.exports = function(app){
 
 		console.log('UPDATE');
 
-		Player.findOne({username: new RegExp('^'+req.param("username")+'$', 'i'), password: new RegExp('^'+req.param("password")+'$', 'i')}, function(err, player){
+		Player.findOne({username: req.param("username"), password: new RegExp('^'+req.param("password")+'$', 'i')}, function(err, player){
 		    
 		    player.lastUnlockedAct = req.body.lastUnlockedAct;
 
@@ -164,7 +164,7 @@ module.exports = function(app){
 
 		console.log('UPDATE');
 
-		Player.findOne({username: new RegExp('^'+req.param("username")+'$', 'i'), password: new RegExp('^'+req.param("password")+'$', 'i')}, function(err, player){
+		Player.findOne({username: req.param("username"), password: new RegExp('^'+req.param("password")+'$', 'i')}, function(err, player){
 		    
 		    player.personality = req.body.personality;
 
@@ -190,7 +190,7 @@ module.exports = function(app){
 
 		console.log('UPDATE');
 
-		Player.findOne({username: new RegExp('^'+req.param("username")+'$', 'i'), password: new RegExp('^'+req.param("password")+'$', 'i')}, function(err, player){
+		Player.findOne({username: req.param("username"), password: new RegExp('^'+req.param("password")+'$', 'i')}, function(err, player){
 		    
 		    if(req.body.world == 1){
 		    	player.affinityWithNPC1.set(req.body.NPC, req.body.value);
