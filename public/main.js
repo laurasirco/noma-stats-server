@@ -65,16 +65,22 @@ nomaApp.controller('ListController', function($scope, $http){
         });
 });
 
-/*function mainController($scope, $http) {
-    $scope.formData = {};
 
-    // Cuando se cargue la página, pide del API todos los TODOs
-    $http.get('/api/games')
-        .success(function(data) {
-            $scope.players = data;
-            console.log(data)
-        })
-        .error(function(data) {
-            console.log('Error: ' + data);
-        });
-}*/
+
+function environmentChart(game) {
+  alert('passed: ' + game);
+}
+
+
+nomaApp.directive('environmentChart', function(){
+  return {
+    restrict: 'E',
+    require: 'ngModel',
+    link: function(scope, elem, attr, ctrl) {
+      var scr = document.createElement('script');
+      var text = document.createTextNode('environmentChart("' + scope.message + '")');
+      scr.appendChild(text);
+      elem.append(scr);
+    }
+  }
+})
