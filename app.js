@@ -28,6 +28,10 @@ app.put('/api/updateLastUnlockedAct/:username', updateLastUnlockedAct);
 app.put('/api/updatePersonality/:username', updatePersonality);
 app.put('/api/updateAffinityOfNPC/:username', updateAffinityOfNPC);
 
+app.use(function(req, res) {
+    res.sendfile(__dirname + '/public/index.html');
+});
+
 var uristring = process.env.MONGOLAB_URI ||
     'mongodb://localhost/games';
 

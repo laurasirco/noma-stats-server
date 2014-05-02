@@ -21,6 +21,10 @@
             <h2 class="featurette-heading">Ambiente</h2>
             <script type="text/javascript">
             
+            window.addEventListener('load', function() {
+  console.log("From js: " + angular.element(document.getElementById('MainController')).scope().game);
+});
+
 
             $(function () {
                     $('#container').highcharts({

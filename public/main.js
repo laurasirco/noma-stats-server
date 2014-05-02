@@ -40,10 +40,10 @@ nomaApp.controller('GameController', function($scope, $http, $routeParams){
     $http.get('/api/game/'+ $routeParams.username)
         .success(function(data) {
             $scope.game = data;
-            console.log(data)
+            //console.log(data)
         })
         .error(function(data) {
-            console.log('Error: ' + data);
+            //console.log('Error: ' + data);
         });
 
 });
@@ -58,10 +58,10 @@ nomaApp.controller('ListController', function($scope, $http){
     $http.get('/api/games')
         .success(function(data) {
             $scope.games = data;
-            console.log(data)
+            //console.log(data)
         })
         .error(function(data) {
-            console.log('Error: ' + data);
+            //console.log('Error: ' + data);
         });
 });
 
