@@ -5,8 +5,13 @@ module.exports = function(app){
 	//Listar todos
 	findAll = function(req, res) {
 		Player.find(function(err, players){
-			if(!err)
+			if(!err){
+				var i = 0;
+				for (i; i < players.length; ++i) {
+    				players[i].password = null;
+				}	
 				res.send(players);
+			}
 			else
 				console.log("ERROR: " + err);
 		});
@@ -14,8 +19,10 @@ module.exports = function(app){
 
 	findById = function(req, res){
 		Player.findById(req.param.id, function(err, player){
-			if(!err)
+			if(!err){
+				player.password = null;
 				res.send(player);
+			}
 			else
 				console.log("ERROR: " + err);
 		});
@@ -27,8 +34,10 @@ module.exports = function(app){
 		console.log('finding: ' +req.param("username"));
 
 		Player.findOne({username: req.param("username")}, function(err, player){
-			if(!err)
+			if(!err){
+				player.password = null;
 				res.send(player);
+			}
 			else
 				console.log('ERROR: ' +err);
 		});

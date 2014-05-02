@@ -1,5 +1,6 @@
 	<div class="jumbotron text-center">
 		<h1>{{ message }} #{{ game.username }}</h1>
+        <h2>{{ game.timePlayed }} segundos jugados</h2>
 	</div>
 
 	<div class="container">
@@ -8,22 +9,52 @@
 
         <hr class="featurette-divider">
 
-        <div class="featurette" id="about">
-            <img class="featurette-image img-responsive pull-right" src="http://placecreature.com/500/500">
-            <h2 class="featurette-heading">Aquí va una gráfica
-                <span class="text-muted">Mimimi</span>
+        <div class="featurette text-center" id="act">
+            <h2 class="featurette-heading">
+                Acto {{ game.lastUnlockedAct }}
             </h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
         </div>
 
         <hr class="featurette-divider">
 
-        <div class="featurette" id="services">
-            <img class="featurette-image img-responsive pull-left" src="http://placecreature.com/500/500">
-            <h2 class="featurette-heading">Aquí va otra gráfica
-                <span class="text-muted">Sí!</span>
-            </h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        <div class="featurette text-center" id="environment">
+            <h2 class="featurette-heading">Ambiente</h2>
+            <script type="text/javascript">
+            
+
+            $(function () {
+                    $('#container').highcharts({
+                        xAxis: {
+                            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Temperature (°C)'
+                            },
+                            plotLines: [{
+                                value: 0,
+                                width: 1,
+                                color: '#808080'
+                            }]
+                        },
+                        tooltip: {
+                            valueSuffix: '°C'
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'right',
+                            verticalAlign: 'middle',
+                            borderWidth: 0
+                        },
+                        series: [{
+                            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                        }]
+                    });
+                });
+        </script>
+            <div data-highcharts-chart="0" id="container"></div>
+
         </div>
 
         <hr class="featurette-divider">
@@ -37,11 +68,5 @@
         </div>
 
         <hr>
-
-        <!-- FOOTER -->
-        <footer>
-            <p>Copyright &copy; Company 2013</p>
-        </footer>
-        <!-- /END OF FOOTER -->
 
     </div>
