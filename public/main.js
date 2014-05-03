@@ -67,20 +67,103 @@ nomaApp.controller('ListController', function($scope, $http){
 
 
 
-function environmentChart(game) {
-  alert('passed: ' + game);
+function environmentChart(environment) {
+
+    console.log("function: "+environment);
+
+    var series = [];
+    /*for (var i = 0; i < environment.length; i++) {
+        series.push(parseFloat(environment[i]);
+    }*/
+
+    if(environment != 'undefined'){
+        
+        var prev = 0;
+
+        while(prev < environment.length - 2){
+            
+            console.log("prev: " +prev);
+            var i = environment.indexOf(',', prev);
+            console.log('i: ' +i);
+            var nS = '';
+            for(var j = prev; j < i; j++)
+                nS += environment[j];
+
+            nS = nS.replace("undefined", "");
+            console.log("nS: "+nS);
+            series.push(parseInt(nS));
+
+            //console.log("series:" + series);
+            prev = i+1;
+        }
+
+        var nS = '';
+        for(var j = prev; j < environment.length; j++)
+            nS += environment[j];
+
+        nS = nS.replace("undefined", "");
+        console.log("nS: "+nS);
+        series.push(parseInt(nS));
+    
+    }
+
+    $(function () {
+            $('#environmentContainer').highcharts({
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+            yAxis: {
+                title: {
+                    text: 'Valor'
+                }
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    enableMouseTracking: false
+                }
+            },
+                series: [{
+                data: series
+            }]
+            });
+    });
 }
 
 
-nomaApp.directive('environmentChart', function(){
-  return {
+/*nomaApp.directive('environmentChart', function(){
+return {
     restrict: 'E',
     require: 'ngModel',
     link: function(scope, elem, attr, ctrl) {
       var scr = document.createElement('script');
-      var text = document.createTextNode('environmentChart("' + scope.message + '")');
+      var text = document.createTextNode('environmentChart("' + scope + '")');
       scr.appendChild(text);
       elem.append(scr);
     }
-  }
-})
+  }*/
+
+nomaApp.directive("environmentChart", function() {
+  return {
+    restrict: 'AE',
+    replace: true,
+    link: function(scope, elem, attrs) {
+        scope.$watch('game.environment', function (newMyData) {
+            console.log("loaded: "+newMyData);
+            var scr = document.createElement('script');
+
+            var text = document.createTextNode('environmentChart("' + newMyData+ '")');  
+            scr.appendChild(text);
+            elem.append(scr);
+        });
+    }
+  };
+});
