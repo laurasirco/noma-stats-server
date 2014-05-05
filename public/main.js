@@ -65,7 +65,54 @@ nomaApp.controller('ListController', function($scope, $http){
         });
 });
 
+function personalityChart(personality){
 
+  if(personality.activity != 'undefined'){
+    console.log("personality: " + personality.activity);
+  }
+$(function () {
+
+    $('#personalityContainer').highcharts({
+                
+        chart: {
+            polar: true,
+        },
+        
+        title: {
+            text: 'Budget vs spending',
+            x: -80
+        },
+        
+        pane: {
+            size: '80%'
+        },
+        
+        xAxis: {
+            categories: ['Sales', 'Marketing', 'Development', 'Customer Support'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+            
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0
+        },
+        
+        tooltip: {
+            shared: true,
+            pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
+        },
+
+        series: [{
+            name: 'Allocated Budget',
+            data: [43000, 19000, 60000, 35000],
+            pointPlacement: 'on'
+        }]
+    
+    });
+});
+}
 
 function environmentChart(environment) {
 
@@ -82,15 +129,12 @@ function environmentChart(environment) {
 
         while(prev < environment.length - 2){
             
-            console.log("prev: " +prev);
             var i = environment.indexOf(',', prev);
-            console.log('i: ' +i);
             var nS = '';
             for(var j = prev; j < i; j++)
                 nS += environment[j];
 
             nS = nS.replace("undefined", "");
-            console.log("nS: "+nS);
             series.push(parseInt(nS));
 
             //console.log("series:" + series);
@@ -102,7 +146,6 @@ function environmentChart(environment) {
             nS += environment[j];
 
         nS = nS.replace("undefined", "");
-        console.log("nS: "+nS);
         series.push(parseInt(nS));
     
     }
@@ -120,7 +163,9 @@ function environmentChart(environment) {
             },
             yAxis: {
                 title: {
-                    text: 'Valor'
+                    text: 'Valor',
+                    max: 100,
+                    min: 0
                 }
             },
             plotOptions: {
@@ -157,10 +202,28 @@ nomaApp.directive("environmentChart", function() {
     replace: true,
     link: function(scope, elem, attrs) {
         scope.$watch('game.environment', function (newMyData) {
-            console.log("loaded: "+newMyData);
+            console.log("loaded env: "+newMyData);
             var scr = document.createElement('script');
 
             var text = document.createTextNode('environmentChart("' + newMyData+ '")');  
+            scr.appendChild(text);
+            elem.append(scr);
+        });
+    }
+  };
+});
+
+nomaApp.directive("personalityChart", function() {
+  return {
+    restrict: 'AE',
+    replace: true,
+    link: function(scope, elem, attrs) {
+        console.log(scope);
+        scope.$watch('game.personality', function (newMyData) {
+            console.log("loaded: "+newMyData.activity+", "+newMyData.confidence+", "+newMyData.conversation+", "+newMyData.temperament);
+            var scr = document.createElement('script');
+
+            var text = document.createTextNode('personalityChart("' + newMyData+ '")');  
             scr.appendChild(text);
             elem.append(scr);
         });
