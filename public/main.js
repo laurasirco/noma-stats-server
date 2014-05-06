@@ -67,9 +67,34 @@ nomaApp.controller('ListController', function($scope, $http){
 
 function personalityChart(personality){
 
-  if(personality.activity != 'undefined'){
-    console.log("personality: " + personality.activity);
-  }
+  if(personality != 'undefined'){
+    console.log("personality: " + personality);
+
+    //Retrieve values
+    var series = [];
+    var prev = 0;
+
+    while(prev < personality.length - 2){
+        
+        var i = personality.indexOf(',', prev);
+        var nS = '';
+        for(var j = prev; j < i; j++)
+            nS += personality[j];
+
+        nS = nS.replace("undefined", "");
+        series.push(parseInt(nS));
+
+        //console.log("series:" + series);
+        prev = i+1;
+    }
+
+    var nS = '';
+    for(var j = prev; j < personality.length; j++)
+        nS += personality[j];
+
+    nS = nS.replace("undefined", "");
+    series.push(parseInt(nS));
+
 $(function () {
 
     $('#personalityContainer').highcharts({
@@ -77,18 +102,22 @@ $(function () {
         chart: {
             polar: true,
         },
+
+        colors: ['#058DC7'],
         
         title: {
-            text: 'Budget vs spending',
-            x: -80
+            text: '',
         },
-        
-        pane: {
-            size: '80%'
+
+        tooltip: {
+            shadow: false,
+            borderRadius: 0,
+            headerFormat: '',
+            pointFormat: '{point.y}',
         },
         
         xAxis: {
-            categories: ['Sales', 'Marketing', 'Development', 'Customer Support'],
+            categories: ['Actividad', 'Confianza', 'Conversación', 'Humor'],
             tickmarkPlacement: 'on',
             lineWidth: 0
         },
@@ -98,20 +127,23 @@ $(function () {
             lineWidth: 0,
             min: 0
         },
-        
-        tooltip: {
-            shared: true,
-            pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
+        credits: {
+            enabled: false
+        },
+        legend: {
+            enabled: false
         },
 
         series: [{
-            name: 'Allocated Budget',
-            data: [43000, 19000, 60000, 35000],
+            name: '',
+            type: 'area',
+            data: series,
             pointPlacement: 'on'
         }]
     
     });
 });
+}
 }
 
 function environmentChart(environment) {
@@ -156,6 +188,8 @@ function environmentChart(environment) {
                 type: 'spline',
                 alignTicks: false,
             },
+
+            colors: ['#50B432'],
             credits: {
                 enabled: false
             },
@@ -240,7 +274,7 @@ nomaApp.directive("personalityChart", function() {
             console.log("loaded: "+newMyData.activity+", "+newMyData.confidence+", "+newMyData.conversation+", "+newMyData.temperament);
             var scr = document.createElement('script');
 
-            var text = document.createTextNode('personalityChart("' + newMyData+ '")');  
+            var text = document.createTextNode('personalityChart("'+newMyData.activity+','+newMyData.confidence+','+newMyData.conversation+','+newMyData.temperament+'")');  
             scr.appendChild(text);
             elem.append(scr);
         });
