@@ -203,7 +203,10 @@ function environmentChart(environment) {
                 text: ''
             },
             tooltip: {
-                enabled: false
+                shadow: false,
+                borderRadius: 0,
+                headerFormat: '',
+                pointFormat: '{point.y}',
             },
             yAxis: {
                 title: {
