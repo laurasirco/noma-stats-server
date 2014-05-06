@@ -153,7 +153,9 @@ function environmentChart(environment) {
     $(function () {
             $('#environmentContainer').highcharts({
             chart: {
-                type: 'spline'
+                type: 'spline',
+                alignTicks: false
+
             },
             title: {
                 text: ''
@@ -164,20 +166,17 @@ function environmentChart(environment) {
             yAxis: {
                 title: {
                     text: 'Valor',
-                    max: 100,
-                    min: 0
-                }
+                },
+                max: 100,
+                min: 0,
+                tickInterval: 10,
+                endOnTick: false
             },
             plotOptions: {
-                line: {
-                    dataLabels: {
-                        enabled: true
-                    },
-                    enableMouseTracking: false
-                }
+
             },
                 series: [{
-                data: series
+                    data: series
             }]
             });
     });
