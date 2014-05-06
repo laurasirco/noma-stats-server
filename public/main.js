@@ -154,8 +154,13 @@ function environmentChart(environment) {
             $('#environmentContainer').highcharts({
             chart: {
                 type: 'spline',
-                alignTicks: false
-
+                alignTicks: false,
+            },
+            credits: {
+                enabled: false
+            },
+            legend: {
+                enabled: false
             },
             title: {
                 text: ''
@@ -163,20 +168,33 @@ function environmentChart(environment) {
             subtitle: {
                 text: ''
             },
+            tooltip: {
+                enabled: false
+            },
             yAxis: {
                 title: {
-                    text: 'Valor',
+                    text: 'Ambiente',
                 },
                 max: 100,
                 min: 0,
                 tickInterval: 10,
-                endOnTick: false
+                endOnTick: false,
+                gridLineDashStyle: 'longdash'
+            },
+            xAxis: {
+                title:{
+                    text: 'Tiempo (min)',
+                },
+                tickInterval: 1
             },
             plotOptions: {
 
             },
                 series: [{
-                    data: series
+                    data: series,
+                    marker: {
+                        enabled: false
+                    }
             }]
             });
     });
